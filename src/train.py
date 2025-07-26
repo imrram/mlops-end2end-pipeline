@@ -4,7 +4,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 import json
     
-def train_model(config):
+def train_model():
     # loading config
     with open("config/config.json") as f:
         config = json.load(f)
