@@ -14,7 +14,6 @@ def train_model():
 
     model = LinearRegression(
         fit_intercept=config["fit_intercept"],
-        normalize=config["normalize"]
     )
 
     model.fit(X_train, y_train)
