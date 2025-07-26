@@ -1,0 +1,8 @@
+{
+    "fit_intercept": true,
+    "normalize": false,
+    "test_size": 0.2,
+    "random_state": 42,
+    "quant_scale": 0.1,
+    "quant_zero_point": 123
+}

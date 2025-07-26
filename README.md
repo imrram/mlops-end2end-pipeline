@@ -1,17 +1,101 @@
-# End-to-End MLOps Pipeline
+# MLOps End-to-End Pipeline
 
-## Branches
-- `main`: README.md
-- `dev`: training logic with sklearn
-- `docker_ci`: Docker + CI workflow
+**Repository**: `mlops-end2end-pipeline`  
+**Dataset**: California Housing Dataset (`fetch_california_housing`)  
+**Model**: Linear Regression  
+**Tools**: Python 3.10, scikit-learn, NumPy, Docker, GitHub Actions
 
-## Workflow
-- Train model using scikit-learn
-- Predict using Docker
-- CI/CD with GitHub Actions
+---
 
-## Dataset
-- California Housing dataset from scikit-learn
+## Objective
 
-## Model
-- Linear Regression (sklearn)
+Build an end-to-end MLOps pipeline that trains, quantizes, validates, and deploys a regression model using GitHub Actions CI/CD and publish to DockerHub.
+
+---
+
+## Project Structure
+
+```
+mlops-end2end-pipeline/
+├── src/
+│   ├── train.py                # Train linear regression model
+│   ├── quantize.py             # Extract and quantize model weights and peform Inference using quantized weights
+├── config/
+│   └── config.json             # Configuration
+├── requirements.txt
+├── Dockerfile
+└── .github/
+    └── workflows/
+        └── ci.yml              # GitHub Actions CI pipeline
+```
+
+---
+
+## Setup Instructions
+
+```bash
+# Step 1: Create and activate environment
+conda create -n e2e_mlops_venv python=3.10 -y
+conda activate e2e_mlops_venv
+
+# Step 2: Install dependencies
+pip install -r requirements.txt
+
+# Step 3: Train the model
+python src/train.py
+
+# Step 4: Quantize the model weights & Perform inference
+python src/quantize.py
+```
+
+---
+
+## GitHub Actions Workflow (`ci.yml`)
+
+This unified CI pipeline performs:
+
+| Phase | Job | Description |
+|-------|-----|-------------|
+| Phase 1 | `train_model` | Trains model and saves `model.joblib` |
+| Phase 3 | `quantize_model` | Quantizes weights into `quant_params.joblib` |
+| Phase 2 | `docker_build_and_push` | Validates inference, builds image, and pushes to DockerHub |
+
+Trigger branches: `main`, `docker_ci`, `quantization`
+
+---
+
+## Docker Deployment
+
+- Docker builds an image using trained and quantized model.
+- Entry point runs `infer_quantized.py`.
+- Image pushed to DockerHub on successful CI.
+
+**DockerHub Secrets (set in GitHub > Settings > Secrets):**
+
+- `DOCKER_USERNAME`
+- `DOCKER_PASSWORD`
+
+---
+
+## Output Sample
+
+```bash
+ Quantized weights saved to quant_params.joblib
+ Inference with quantized weights complete.
+ Predictions (first 5): [2.85 3.16 1.94 2.25 2.68]
+```
+
+---
+
+## Key Insights
+
+- Quantization reduces model size and enables lightweight inference.
+- Modular Python scripts ensure separation of training, quantization, and inference.
+- GitHub Actions automates testing, packaging, and Docker deployment.
+- Docker guarantees reproducibility across environments.
+
+---
+
+##  Conclusion
+
+This repo demonstrates how to operationalize an ML pipeline by combining modular code, version control, continuous integration, quantization, and containerized deployment. The result is a scalable and production-ready MLOps workflow.
