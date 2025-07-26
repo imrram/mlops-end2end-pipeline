@@ -88,7 +88,11 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: model-artifact
-        path: .
+
+    - name: Download quantized weights
+      uses: actions/download-artifact@v4
+      with:
+        name: quant-weights
 
     - name: Run inference with quantized weights
       run: python src/quantize.py
