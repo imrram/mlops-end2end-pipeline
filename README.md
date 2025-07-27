@@ -24,6 +24,7 @@ Build an end-to-end MLOps pipeline that trains, quantizes, validates, and deploy
 mlops-end2end-pipeline/
 ├── src/
 │   ├── train.py                # Train linear regression model
+│   ├── predict.py              # Predict 
 │   ├── quantize.py             # Extract and quantize model weights and peform Inference using quantized weights
 ├── config/
 │   └── config.json             # Configuration
