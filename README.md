@@ -64,10 +64,28 @@ Trigger branches: `main`, `docker_ci`, `quantization`
 
 ---
 
+## Model Comparison: Sklearn vs Quantized
+
+| **Metric**         | **Original Sklearn Model**         | **Quantized Model**            |
+|--------------------|------------------------------------|---------------------------------|
+| **R² Score**        | `0.5758`                           | `-333.4334`                     |
+| **Model Size**      | `unquant_params.joblib` <br> `0.40 KB` | `quant_params.joblib` <br> `0.36 KB` |
+
+---
+
+## Analysis & Key Insight
+
+- Quantization **reduced model size** slightly but severely impacted **model performance**.
+- The drop in **R² score** highlights that the manually quantized weights deviate heavily from the original.
+- This demonstrates the trade-off between **size** and **accuracy** in model deployment scenarios.
+
+---
+
+
 ## Docker Deployment
 
 - Docker builds an image using trained and quantized model.
-- Entry point runs `infer_quantized.py`.
+- Entry point runs `quantize.py`.
 - Image pushed to DockerHub on successful CI.
 
 **DockerHub Secrets (set in GitHub > Settings > Secrets):**
