@@ -1,9 +1,14 @@
 # MLOps End-to-End Pipeline
 
-**Repository**: `mlops-end2end-pipeline`  
-**Dataset**: California Housing Dataset (`fetch_california_housing`)  
-**Model**: Linear Regression  
-**Tools**: Python 3.10, scikit-learn, NumPy, Docker, GitHub Actions
+
+![Repository](https://img.shields.io/badge/Repo-mlops%20end2end%20pipeline-red)
+![Dataset](https://img.shields.io/badge/Dataset-California%20Housing%20Dataset-Orange)
+![Python](https://img.shields.io/badge/Python-3.10+-green)
+![scikit-learn](https://img.shields.io/badge/scikit-learn+-yellow)
+![NumPy](https://img.shields.io/badge/NumPy-grey)
+![Docker](https://img.shields.io/badge/Docker+-blue)
+![GitHub Actions](https://img.shields.io/badge/GitHubAction-pink)
+![ML](https://img.shields.io/badge/ML-Linear%20Regression-orange)
 
 ---
 
